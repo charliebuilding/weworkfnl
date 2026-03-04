@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WeWork x FNL — VIK Partnership Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fnl-cyan: #00FFD1;
+    --fnl-magenta: #FF006B;
+    --fnl-yellow: #FFFF00;
+    --fnl-deep-black: #0A0A0A;
+    --fnl-charcoal: #1A1A1A;
+    --fnl-purple-dark: #1a0a3e;
+    --fnl-purple-deep: #0d0520;
+    --fnl-white: #FFFFFF;
+    --fnl-light-grey: #B0B0B0;
+    --fnl-muted-grey: #808080;
+    --gradient-primary: linear-gradient(90deg, #00FFD1 0%, #FF006B 100%);
+    --gradient-rainbow: linear-gradient(90deg, #00FFD1 0%, #66FF70 33%, #FFFF00 50%, #FF7F35 67%, #FF006B 100%);
+    --gradient-hero: linear-gradient(180deg, #1a0a3e 0%, #0d0520 50%, #0A0A0A 100%);
+    --gradient-three: linear-gradient(135deg, #00FFD1, #FF006B, #FFFF00);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { background: var(--fnl-deep-black); }
+  body {
+    background: var(--fnl-deep-black);
+    color: var(--fnl-white);
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px; font-weight: 700; color: var(--fnl-white); letter-spacing: 2px;
+  }
+  .logo-icon {
+    width: 40px; height: 40px;
+    background: var(--gradient-three); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: 800; color: var(--fnl-deep-black);
+  }
+  .logo span {
+    background: var(--gradient-rainbow);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .nav-tag { font-size: 12px; font-weight: 500; color: var(--fnl-muted-grey); letter-spacing: 1px; }
+
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+    padding: 140px 60px 160px; position: relative;
+    background: var(--gradient-hero); overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,255,209,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -100px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,0,107,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--fnl-cyan); margin-bottom: 30px;
+    opacity: 0; animation: fadeUp 0.7s ease forwards 0.2s;
+  }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(48px, 7vw, 86px); font-weight: 800;
+    line-height: 1.05; letter-spacing: -4px; margin-bottom: 20px;
+    opacity: 0; animation: fadeUp 0.7s ease forwards 0.4s;
+  }
+  .highlight {
+    background: var(--gradient-rainbow);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .hero-sub {
+    font-size: 20px; color: var(--fnl-light-grey); max-width: 580px; font-weight: 400; margin-bottom: 16px;
+    opacity: 0; animation: fadeUp 0.7s ease forwards 0.55s;
+  }
+  .hero-meta {
+    display: flex; gap: 16px; flex-wrap: wrap; margin-top: 30px;
+    opacity: 0; animation: fadeUp 0.7s ease forwards 0.7s;
+  }
+  .badge {
+    display: inline-block; background: var(--fnl-cyan); color: var(--fnl-deep-black);
+    padding: 8px 16px; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px; border-radius: 4px;
+  }
+  .badge.outline { background: transparent; border: 1px solid rgba(0,255,209,0.3); color: var(--fnl-cyan); }
+  .badge.magenta { background: var(--fnl-magenta); color: var(--fnl-white); }
+  .badge.yellow { background: var(--fnl-yellow); color: var(--fnl-deep-black); }
+  .hero-lme {
+    position: absolute; bottom: 40px; left: 60px;
+    display: flex; align-items: center; gap: 14px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px; padding: 14px 24px;
+    opacity: 0; animation: fadeUp 0.7s ease forwards 0.9s;
+  }
+  .hero-lme .lme-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--fnl-muted-grey);
+  }
+  .hero-lme .lme-name {
+    font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700;
+    color: var(--fnl-white); letter-spacing: 0.5px;
+  }
+  .hero-lme .lme-divider { width: 1px; height: 30px; background: rgba(255,255,255,0.15); }
+  .hero-lme .lme-badge {
+    font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: 700;
+    color: var(--fnl-cyan); letter-spacing: 2px; text-transform: uppercase;
+  }
+
+  .section { padding: 120px 60px; position: relative; background: var(--fnl-deep-black); }
+  .section.alt { background: var(--fnl-charcoal); }
+  .section-header { text-align: center; margin-bottom: 70px; }
+  .section-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(36px, 5vw, 56px); font-weight: 700; margin-bottom: 15px; letter-spacing: -2px;
+  }
+  .section-header p { color: var(--fnl-light-grey); font-size: 19px; max-width: 580px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--fnl-cyan); margin-bottom: 16px;
+  }
+  .section-header .section-label { text-align: center; }
+
+  .stats-bar {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    background: var(--fnl-charcoal);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .stat { padding: 48px 40px; text-align: center; position: relative; }
+  .stat:not(:last-child)::after {
+    content: ''; position: absolute; right: 0; top: 30%; height: 40%; width: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif; font-size: 42px; font-weight: 800; letter-spacing: -2px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .stat-label {
+    font-size: 12px; color: var(--fnl-muted-grey); margin-top: 6px;
+    font-weight: 600; text-transform: uppercase; letter-spacing: 2px;
+  }
+
+  .festival-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 35px; max-width: 1200px; margin: 0 auto; }
+  .festival-card {
+    position: relative; border-radius: 20px; overflow: hidden; min-height: 480px;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 45px;
+    background: #141414; transition: all 0.4s ease;
+  }
+  .festival-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(180deg, transparent 20%, rgba(10,10,10,0.95) 100%); z-index: 1;
+  }
+  .festival-card:hover { transform: translateY(-8px); }
+  .festival-content { position: relative; z-index: 2; }
+  .festival-card h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 38px; font-weight: 800;
+    margin-bottom: 12px; letter-spacing: -1px;
+  }
+  .festival-card p { color: var(--fnl-light-grey); font-size: 15px; margin-bottom: 24px; max-width: 380px; line-height: 1.7; }
+  .festival-stats { display: flex; gap: 30px; }
+  .festival-stat-number { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 800; color: var(--fnl-cyan); }
+  .festival-stat-label { font-size: 11px; color: var(--fnl-muted-grey); text-transform: uppercase; letter-spacing: 1px; }
+  .festival-card.cyan { border-top: 3px solid var(--fnl-cyan); }
+  .festival-card.magenta { border-top: 3px solid var(--fnl-magenta); }
+
+  /* EXCHANGE TABLE */
+  .exchange-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0; max-width: 1000px; margin: 0 auto;
+    border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08);
+  }
+  .exchange-col { padding: 0; }
+  .exchange-col-header {
+    padding: 28px 36px;
+    font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px;
+  }
+  .exchange-col.wework .exchange-col-header {
+    background: rgba(255,255,0,0.08); color: var(--fnl-yellow);
+    border-bottom: 2px solid rgba(255,255,0,0.2);
+  }
+  .exchange-col.fnl .exchange-col-header {
+    background: rgba(0,255,209,0.06); color: var(--fnl-cyan);
+    border-bottom: 2px solid rgba(0,255,209,0.15);
+    border-left: 1px solid rgba(255,255,255,0.06);
+  }
+  .exchange-item {
+    padding: 18px 36px; font-size: 15px; color: var(--fnl-light-grey);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: #111; display: flex; align-items: flex-start; gap: 12px;
+  }
+  .exchange-col.fnl .exchange-item {
+    border-left: 1px solid rgba(255,255,255,0.06);
+  }
+  .exchange-item:last-child { border-bottom: none; }
+  .exchange-item::before { font-weight: 700; flex-shrink: 0; font-size: 16px; margin-top: 1px; }
+  .exchange-col.wework .exchange-item::before { content: '\2192'; color: var(--fnl-yellow); }
+  .exchange-col.fnl .exchange-item::before { content: '\2192'; color: var(--fnl-cyan); }
+  .exchange-item:nth-child(even) { background: #151515; }
+
+  .value-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; max-width: 1000px; margin: 0 auto; }
+  .value-card {
+    background: var(--fnl-charcoal); border-radius: 20px; padding: 44px; transition: transform 0.3s ease;
+  }
+  .value-card:hover { transform: translateY(-4px); }
+  .value-card h3 {
+    font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px; margin-bottom: 28px;
+  }
+  .value-card.cyan-accent { border-top: 3px solid var(--fnl-cyan); }
+  .value-card.cyan-accent h3 { color: var(--fnl-cyan); }
+  .value-card.magenta-accent { border-top: 3px solid var(--fnl-magenta); }
+  .value-card.magenta-accent h3 { color: var(--fnl-magenta); }
+  .value-card.yellow-accent { border-top: 3px solid var(--fnl-yellow); }
+  .value-card.yellow-accent h3 { color: var(--fnl-yellow); }
+  .value-card ul { list-style: none; }
+  .value-card ul li { padding: 10px 0; font-size: 15px; color: var(--fnl-light-grey); display: flex; align-items: center; gap: 10px; }
+  .value-card ul li::before { content: '\2022'; font-weight: 800; font-size: 18px; }
+  .value-card.cyan-accent ul li::before { color: var(--fnl-cyan); }
+  .value-card.magenta-accent ul li::before { color: var(--fnl-magenta); }
+  .value-card.yellow-accent ul li::before { color: var(--fnl-yellow); }
+
+  .deal-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px;
+    max-width: 900px; margin: 0 auto; background: rgba(255,255,255,0.06); border-radius: 16px; overflow: hidden;
+  }
+  .deal-item { background: #141414; padding: 28px 32px; }
+  .deal-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--fnl-muted-grey); margin-bottom: 8px; }
+  .deal-value { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; color: var(--fnl-white); }
+  .deal-item.featured { border-left: 3px solid var(--fnl-cyan); }
+  .deal-item.featured .deal-value {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  /* VIK BANNER */
+  .vik-banner {
+    max-width: 900px; margin: 0 auto 0; padding: 40px 44px;
+    background: linear-gradient(135deg, rgba(255,255,0,0.05) 0%, rgba(0,255,209,0.05) 50%, rgba(255,0,107,0.05) 100%), #111;
+    border: 1px solid rgba(255,255,0,0.15);
+    border-radius: 16px; text-align: center;
+  }
+  .vik-banner .vik-title {
+    font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--fnl-yellow); margin-bottom: 14px;
+  }
+  .vik-banner .vik-headline {
+    font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 800;
+    color: var(--fnl-white); margin-bottom: 12px; letter-spacing: -1px;
+  }
+  .vik-banner .vik-sub {
+    font-size: 16px; color: var(--fnl-light-grey); max-width: 500px; margin: 0 auto;
+  }
+
+  .steps { max-width: 640px; margin: 0 auto; list-style: none; counter-reset: step; }
+  .steps li {
+    counter-increment: step; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 16px; color: var(--fnl-light-grey); display: flex; align-items: flex-start; gap: 20px;
+  }
+  .steps li::before {
+    content: counter(step); font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: 700;
+    color: var(--fnl-deep-black); background: var(--fnl-cyan);
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    box-shadow: 0 0 15px rgba(0,255,209,0.3);
+  }
+
+  footer {
+    padding: 50px 60px; border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex; align-items: center; justify-content: center;
+    background: var(--fnl-deep-black);
+  }
+  .footer-brand {
+    font-size: 13px; color: var(--fnl-muted-grey); text-align: center; width: 100%;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .footer-brand strong {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;
+  }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 1000px) {
+    .festival-grid, .value-grid, .deal-grid, .exchange-grid { grid-template-columns: 1fr; }
+    .exchange-col.fnl .exchange-col-header { border-left: none; border-top: 1px solid rgba(255,255,255,0.06); }
+    .exchange-col.fnl .exchange-item { border-left: none; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 15px 30px; }
+    .nav-tag { display: none; }
+    .hero { padding: 120px 30px 140px; }
+    .hero h1 { letter-spacing: -2px; }
+    .hero-lme { left: 30px; right: 30px; bottom: 30px; padding: 12px 18px; flex-wrap: wrap; justify-content: center; text-align: center; }
+    .hero-lme .lme-divider { display: none; }
+    .hero-lme .lme-name { font-size: 14px; }
+    .section { padding: 80px 30px; }
+    .stat { padding: 32px 20px; }
+    .stat-num { font-size: 32px; }
+    .festival-card { min-height: 380px; padding: 30px; }
+    .festival-card h3 { font-size: 28px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+  }
+  @media print {
+    html, body { background: #0A0A0A; color: #ddd; }
+    nav { display: none; }
+    .hero { min-height: auto; page-break-after: always; background: #0A0A0A; }
+    .section { padding: 40px; background: #0A0A0A; }
+    .section.alt { background: #1A1A1A; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">FNL</div>
+    FRIDAY NIGHT <span>LIGHTS</span>
+  </a>
+  <div class="nav-tag">Partnership Proposal — Confidential</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Partnership Proposal · March 2026</div>
+  <h1>WEWORK ×<br><span class="highlight">FRIDAY NIGHT LIGHTS.</span></h1>
+  <p style="font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:600; color:var(--fnl-white); letter-spacing:1px; margin-bottom:12px; opacity:0; animation:fadeUp 0.7s ease forwards 0.48s;">Work Hard. Run Harder.</p>
+  <p class="hero-sub">A Value in Kind partnership — FNL taps into WeWork's London network for promotion and community access, in exchange for brand exposure at Run The Wharf and across our 50,000+ runner community.</p>
+  <div class="hero-meta">
+    <span class="badge yellow">Value in Kind (VIK)</span>
+    <span class="badge magenta">Zero Cash Exchange</span>
+    <span class="badge outline">Network Access &#8596; Brand Exposure</span>
+  </div>
+  <div class="hero-lme">
+    <div>
+      <div class="lme-label">Official Partner Of</div>
+      <div class="lme-name">London Marathon Events</div>
+    </div>
+    <div class="lme-divider"></div>
+    <div class="lme-badge">Backed & Invested</div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">50,000+</div><div class="stat-label">Runners</div></div>
+  <div class="stat"><div class="stat-num">120K+</div><div class="stat-label">Instagram</div></div>
+  <div class="stat"><div class="stat-num">60%</div><div class="stat-label">Female Audience</div></div>
+  <div class="stat"><div class="stat-num">25–34</div><div class="stat-label">Core Demo</div></div>
+</div>
+
+<div style="background: linear-gradient(90deg, rgba(0,255,209,0.04) 0%, rgba(255,0,107,0.04) 100%), #0A0A0A; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 20px 60px; display: flex; align-items: center; justify-content: center; gap: 16px;">
+  <span style="font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--fnl-cyan);">Backed & Invested By</span>
+  <span style="font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; color: var(--fnl-white); letter-spacing: 1px;">London Marathon Events</span>
+  <span style="font-size: 13px; color: var(--fnl-muted-grey);">— Home of the TCS London Marathon</span>
+</div>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-label">Who We Are</div>
+    <h2>The UK's Healthiest <span class="highlight">Night Out.</span></h2>
+    <p>Friday Night Lights is the UK's fastest-growing running events company. Backed by London Marathon Events, FNL has grown to 50,000+ runners since 2023 — a passionate community who choose running over a night at the pub.</p>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="section-header">
+    <div class="section-label">The Opportunity</div>
+    <h2>WeWork's Network. <span class="highlight">FNL's Community.</span></h2>
+    <p>WeWork operates 40+ locations across London — a city-wide network of ambitious, active professionals. FNL's audience is the same demographic, through a different lens. This is a natural exchange.</p>
+  </div>
+  <div class="value-grid">
+    <div class="value-card yellow-accent">
+      <h3>WeWork London</h3>
+      <ul>
+        <li>40+ locations across London</li>
+        <li>500,000+ members globally</li>
+        <li>Key sites: Canary Wharf, Shoreditch, City, Southbank</li>
+        <li>Community events, networking, and member comms</li>
+        <li>Young professionals, entrepreneurs, startups, corporates</li>
+      </ul>
+    </div>
+    <div class="value-card magenta-accent">
+      <h3>Audience Overlap</h3>
+      <ul>
+        <li>Urban professionals aged 25–34 — exact FNL demo</li>
+        <li>Health-conscious, socially active, experience-seekers</li>
+        <li>Canary Wharf members sit directly in RTW's catchment</li>
+        <li>After-work culture — FNL events start at 20:00</li>
+        <li>Community-driven — both brands built on belonging</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-label">The Events</div>
+    <h2>The Flagship <span class="highlight">Experience.</span></h2>
+    <p>Our premium night run. The biggest stage. The brightest lights. An unforgettable night.</p>
+  </div>
+  <div style="max-width: 700px; margin: 0 auto;">
+    <div class="festival-card cyan" style="min-height: 480px;">
+      <div class="festival-content">
+        <span class="badge" style="margin-bottom:20px;">5K · Canary Wharf · September 3, 2026</span>
+        <h3>Run The Wharf</h3>
+        <p>A premium 5K night run through the iconic Canary Wharf estate. Dramatic skyline, waterside paths, and a vibrant post-run festival village. Young, affluent, health-focused audience.</p>
+        <div class="festival-stats">
+          <div><div class="festival-stat-number">5K</div><div class="festival-stat-label">Distance</div></div>
+          <div><div class="festival-stat-number">5,000+</div><div class="festival-stat-label">Runners</div></div>
+          <div><div class="festival-stat-number">20:00</div><div class="festival-stat-label">Start</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="section-header">
+    <div class="section-label">VIK Partnership Structure</div>
+    <h2>The <span class="highlight">Exchange.</span></h2>
+    <p>No money changes hands. WeWork provides access to its London network and promotional channels. FNL provides brand exposure at Run The Wharf and across its community. A clean value-for-value swap.</p>
+  </div>
+
+  <div class="exchange-grid">
+    <div class="exchange-col wework">
+      <div class="exchange-col-header">WeWork Provides to FNL</div>
+      <div class="exchange-item">FNL promotional materials (flyers, posters, QR codes) displayed across agreed WeWork London locations</div>
+      <div class="exchange-item">Distribution of FNL event information via WeWork member communications (email newsletters, app notifications)</div>
+      <div class="exchange-item">Access to WeWork community event slots — FNL to host "Lunch & Learn" or networking sessions promoting events</div>
+      <div class="exchange-item">Digital screen promotion in WeWork common areas across key London locations</div>
+      <div class="exchange-item">FNL discount codes shared with WeWork members — driving race sign-ups directly from the network</div>
+      <div class="exchange-item">Co-branded social media posts from WeWork London channels promoting FNL events</div>
+      <div class="exchange-item">Access to WeWork event spaces for FNL partnership meetings, sponsor activations, or community gatherings</div>
+    </div>
+    <div class="exchange-col fnl">
+      <div class="exchange-col-header">FNL Provides to WeWork</div>
+      <div class="exchange-item">Branded activation space at Run The Wharf for WeWork to promote memberships and workspace tours</div>
+      <div class="exchange-item">Co-branded social media content across FNL's 120K+ following</div>
+      <div class="exchange-item">WeWork member discount on FNL race entries — exclusive "WeWork × FNL" entries</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 50px;">
+    <div class="vik-banner">
+      <div class="vik-title">Value in Kind</div>
+      <div class="vik-headline">Zero Cash. Maximum Reach.</div>
+      <div class="vik-sub">FNL accesses WeWork's 40+ London locations and member network. WeWork accesses FNL's 50,000+ runners and 120K+ social following at Run The Wharf. Both brands grow — together.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-label">Network Activation</div>
+    <h2>Across <span class="highlight">London.</span></h2>
+    <p>The real power of this partnership is reach. FNL promotional materials and member offers distributed across WeWork's London footprint — targeting professionals in the exact postcodes Run The Wharf serves.</p>
+  </div>
+  <div class="value-grid">
+    <div class="value-card cyan-accent">
+      <h3>Priority Locations</h3>
+      <ul>
+        <li>30 Churchill Place — Canary Wharf (Run The Wharf heartland)</li>
+        <li>Shoreditch & East London sites</li>
+        <li>City of London — Liverpool St, Moorgate, Tower Hill</li>
+        <li>Southbank, Waterloo & London Bridge</li>
+        <li>Soho, Marylebone & Midtown</li>
+      </ul>
+    </div>
+    <div class="value-card magenta-accent">
+      <h3>Activation Channels</h3>
+      <ul>
+        <li>Physical posters and flyers in common areas and lounges</li>
+        <li>Digital screen content in high-traffic lobbies</li>
+        <li>WeWork member newsletter features</li>
+        <li>WeWork app notifications and member offers</li>
+        <li>Community event hosting slots</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="section-header">
+    <div class="section-label">Mutual Value</div>
+    <h2>Why WeWork × <span class="highlight">FNL.</span></h2>
+    <p>Two community brands. Same city. Same demographic. Different moments of their day. WeWork owns the workday. FNL owns Friday night.</p>
+  </div>
+  <div class="value-grid">
+    <div class="value-card yellow-accent">
+      <h3>For WeWork</h3>
+      <ul>
+        <li>Brand visibility at Run The Wharf (5,000+ runners)</li>
+        <li>On-site activation space — promote memberships and tours</li>
+        <li>Alignment with London Marathon Events</li>
+        <li>Co-branded social content across FNL's 120K+ following</li>
+        <li>Position WeWork as a lifestyle brand, not just workspace</li>
+        <li>Exclusive "WeWork × FNL" member offers — drive engagement</li>
+      </ul>
+    </div>
+    <div class="value-card cyan-accent">
+      <h3>For FNL</h3>
+      <ul>
+        <li>City-wide promotional distribution across 40+ London sites</li>
+        <li>Direct access to WeWork's London member base</li>
+        <li>Member comms reach — newsletters, app, digital screens</li>
+        <li>Event space access for meetings and activations</li>
+        <li>Race sign-up conversion from WeWork discount codes</li>
+        <li>Network effect — WeWork members share with colleagues</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-label">Deal Summary</div>
+    <h2>At a <span class="highlight">Glance.</span></h2>
+  </div>
+  <div class="deal-grid">
+    <div class="deal-item"><div class="deal-label">Partner</div><div class="deal-value">WeWork</div></div>
+    <div class="deal-item"><div class="deal-label">Event</div><div class="deal-value">Run The Wharf 5K — September 3, 2026</div></div>
+    <div class="deal-item"><div class="deal-label">Structure</div><div class="deal-value">Value in Kind (VIK) — Zero Cash</div></div>
+    <div class="deal-item featured"><div class="deal-label">Exchange</div><div class="deal-value">Network Access + Promotion &#8596; Brand Exposure + Activation</div></div>
+    <div class="deal-item"><div class="deal-label">WeWork Delivers</div><div class="deal-value">London-wide promotional access, member comms, event space, digital screens</div></div>
+    <div class="deal-item"><div class="deal-label">FNL Delivers</div><div class="deal-value">Activation space at RTW, social content, member offers</div></div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="section-header">
+    <div class="section-label">Next Steps</div>
+    <h2>Let's Make It <span class="highlight">Happen.</span></h2>
+  </div>
+  <ol class="steps">
+    <li>Introductory call to align on partnership vision and agree VIK scope</li>
+    <li>Confirm priority WeWork locations for FNL promotional distribution</li>
+    <li>Agree member communication plan (newsletters, app, digital screens)</li>
+    <li>Finalise FNL event branding and activation package for WeWork</li>
+    <li>Sign VIK partnership agreement</li>
+    <li>Launch co-branded campaign — "WeWork × Friday Night Lights"</li>
+  </ol>
+</section>
+
+<footer>
+  <div class="footer-brand">
+    <div>Friday Night Lights</div>
+    <div><strong>The UK's Healthiest Night Out</strong></div>
+    <div>@fridaynightlightsrun</div>
+    <div>fridaynightlights.co.uk</div>
+    <div>London Marathon Events</div>
+  </div>
+</footer>
+
+</body>
+</html>
