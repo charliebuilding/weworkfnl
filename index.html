@@ -278,6 +278,75 @@
     font-size: 16px; color: var(--fnl-light-grey); max-width: 500px; margin: 0 auto;
   }
 
+  /* TWO-TIER COMPARISON */
+  .tier-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    max-width: 1060px; margin: 0 auto;
+  }
+  .tier-card {
+    border-radius: 20px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08); background: #111;
+    display: flex; flex-direction: column;
+  }
+  .tier-header {
+    padding: 32px 36px 24px; text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .tier-tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .tier-card.vik .tier-tag { color: var(--fnl-yellow); }
+  .tier-card.paid .tier-tag { color: var(--fnl-cyan); }
+  .tier-price {
+    font-family: 'Orbitron', sans-serif; font-size: 36px; font-weight: 800; margin-bottom: 6px;
+  }
+  .tier-card.vik .tier-price { color: var(--fnl-yellow); text-shadow: 0 0 12px rgba(255,255,0,0.3); }
+  .tier-card.paid .tier-price {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .tier-subtitle { font-size: 13px; color: var(--fnl-muted-grey); }
+  .tier-body { padding: 0; flex: 1; }
+  .tier-section-label {
+    padding: 16px 36px 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .tier-card.vik .tier-section-label { color: var(--fnl-yellow); }
+  .tier-card.paid .tier-section-label { color: var(--fnl-cyan); }
+  .tier-item {
+    padding: 12px 36px; font-size: 14px; color: var(--fnl-light-grey);
+    display: flex; align-items: flex-start; gap: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .tier-item::before { content: '✓'; font-weight: 700; flex-shrink: 0; }
+  .tier-card.vik .tier-item::before { color: var(--fnl-yellow); }
+  .tier-card.paid .tier-item::before { color: var(--fnl-cyan); }
+  .tier-divider {
+    border: none; border-top: 1px solid rgba(255,255,255,0.08);
+    margin: 8px 0;
+  }
+  .tier-card.paid {
+    border-color: rgba(0,255,209,0.2);
+    box-shadow: 0 0 40px rgba(0,255,209,0.06);
+  }
+  .tier-card.paid .tier-header {
+    background: linear-gradient(135deg, rgba(0,255,209,0.06) 0%, rgba(255,0,107,0.04) 100%);
+  }
+  .tier-recommended {
+    display: inline-block; background: var(--fnl-cyan); color: var(--fnl-deep-black);
+    padding: 4px 12px; font-size: 10px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 2px; border-radius: 4px;
+    margin-bottom: 14px;
+  }
+  .tier-bonus {
+    padding: 12px 36px; font-size: 14px; font-weight: 600;
+    display: flex; align-items: flex-start; gap: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .tier-bonus::before { content: '★'; font-weight: 700; flex-shrink: 0; color: var(--fnl-cyan); }
+  .tier-bonus { color: var(--fnl-white); }
+
   .steps { max-width: 640px; margin: 0 auto; list-style: none; counter-reset: step; }
   .steps li {
     counter-increment: step; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -308,7 +377,8 @@
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
   @media (max-width: 1000px) {
-    .festival-grid, .value-grid, .deal-grid, .exchange-grid { grid-template-columns: 1fr; }
+    .festival-grid, .value-grid, .deal-grid, .exchange-grid, .tier-grid { grid-template-columns: 1fr; }
+    .exchange-col .exchange-col-header + div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
     .exchange-col.fnl .exchange-col-header { border-left: none; border-top: 1px solid rgba(255,255,255,0.06); }
     .exchange-col.fnl .exchange-item { border-left: none; }
     .stats-bar { grid-template-columns: repeat(2, 1fr); }
@@ -351,11 +421,11 @@
   <div class="hero-tag">Partnership Proposal · March 2026</div>
   <h1>WEWORK ×<br><span class="highlight">FRIDAY NIGHT LIGHTS.</span></h1>
   <p style="font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:600; color:var(--fnl-white); letter-spacing:1px; margin-bottom:12px; opacity:0; animation:fadeUp 0.7s ease forwards 0.48s;">Work Hard. Run Harder.</p>
-  <p class="hero-sub">A Value in Kind partnership — FNL taps into WeWork's London network for promotion and community access, in exchange for brand exposure at Run The Wharf and across our 50,000+ runner community.</p>
+  <p class="hero-sub">Two partnership options — a Value in Kind exchange or a £5,000 paid sponsorship — giving WeWork brand exposure at Run The Wharf and access to FNL's 50,000+ runner community.</p>
   <div class="hero-meta">
-    <span class="badge yellow">Value in Kind (VIK)</span>
-    <span class="badge magenta">Zero Cash Exchange</span>
-    <span class="badge outline">Network Access &#8596; Brand Exposure</span>
+    <span class="badge yellow">VIK Option</span>
+    <span class="badge magenta">£5K Paid Option</span>
+    <span class="badge outline">Run The Wharf · Sept 2026</span>
   </div>
   <div class="hero-lme">
     <div>
@@ -443,34 +513,74 @@
 <section class="section alt">
   <div class="section-header">
     <div class="section-label">VIK Partnership Structure</div>
-    <h2>The <span class="highlight">Exchange.</span></h2>
-    <p>No money changes hands. WeWork provides access to its London network and promotional channels. FNL provides brand exposure at Run The Wharf and across its community. A clean value-for-value swap.</p>
+    <h2>The <span class="highlight">Partnership.</span></h2>
+    <p>No matter which option WeWork chooses, FNL taps into the London network and WeWork gets brand exposure at Run The Wharf. The paid option unlocks the full package.</p>
   </div>
 
-  <div class="exchange-grid">
-    <div class="exchange-col wework">
-      <div class="exchange-col-header">WeWork Provides to FNL</div>
-      <div class="exchange-item">FNL promotional materials (flyers, posters, QR codes) displayed across agreed WeWork London locations</div>
-      <div class="exchange-item">Distribution of FNL event information via WeWork member communications (email newsletters, app notifications)</div>
-      <div class="exchange-item">Access to WeWork community event slots — FNL to host "Lunch & Learn" or networking sessions promoting events</div>
-      <div class="exchange-item">Digital screen promotion in WeWork common areas across key London locations</div>
-      <div class="exchange-item">FNL discount codes shared with WeWork members — driving race sign-ups directly from the network</div>
-      <div class="exchange-item">Co-branded social media posts from WeWork London channels promoting FNL events</div>
-      <div class="exchange-item">Access to WeWork event spaces for FNL partnership meetings, sponsor activations, or community gatherings</div>
-    </div>
-    <div class="exchange-col fnl">
-      <div class="exchange-col-header">FNL Provides to WeWork</div>
-      <div class="exchange-item">Branded activation space at Run The Wharf for WeWork to promote memberships and workspace tours</div>
-      <div class="exchange-item">Co-branded social media content across FNL's 120K+ following</div>
-      <div class="exchange-item">WeWork member discount on FNL race entries — exclusive "WeWork × FNL" entries</div>
+  <div class="exchange-grid" style="margin-bottom: 50px;">
+    <div class="exchange-col wework" style="grid-column: 1 / -1;">
+      <div class="exchange-col-header">WeWork Provides to FNL (Both Options)</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
+        <div>
+          <div class="exchange-item">FNL promotional materials displayed across agreed WeWork London locations</div>
+          <div class="exchange-item">Distribution via WeWork member communications (email newsletters, app notifications)</div>
+          <div class="exchange-item">Access to WeWork community event slots — FNL to host networking sessions</div>
+          <div class="exchange-item">Access to WeWork event spaces for FNL partnership meetings or community gatherings</div>
+        </div>
+        <div>
+          <div class="exchange-item">Digital screen promotion in WeWork common areas across key London locations</div>
+          <div class="exchange-item">FNL discount codes shared with WeWork members — driving race sign-ups</div>
+          <div class="exchange-item">Co-branded social media posts from WeWork London channels promoting FNL events</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div style="margin-top: 50px;">
-    <div class="vik-banner">
-      <div class="vik-title">Value in Kind</div>
-      <div class="vik-headline">Zero Cash. Maximum Reach.</div>
-      <div class="vik-sub">FNL accesses WeWork's 40+ London locations and member network. WeWork accesses FNL's 50,000+ runners and 120K+ social following at Run The Wharf. Both brands grow — together.</div>
+  <div class="section-header" style="margin-bottom: 40px;">
+    <div class="section-label">Two Options</div>
+    <h2 style="font-size: clamp(28px,4vw,40px);">What FNL Provides <span class="highlight">to WeWork.</span></h2>
+    <p>Choose the partnership level that fits. VIK for network-for-exposure, or Paid Sponsorship for the full package.</p>
+  </div>
+
+  <div class="tier-grid">
+    <!-- VIK OPTION -->
+    <div class="tier-card vik">
+      <div class="tier-header">
+        <div class="tier-tag">Option A · Value in Kind</div>
+        <div class="tier-price">£0</div>
+        <div class="tier-subtitle">Zero cash — network access for brand exposure</div>
+      </div>
+      <div class="tier-body">
+        <div class="tier-section-label">FNL Delivers</div>
+        <div class="tier-item">Branded activation space at Run The Wharf festival village</div>
+        <div class="tier-item">Co-branded social media content across FNL's 120K+ following</div>
+        <div class="tier-item">WeWork member discount on FNL race entries — exclusive "WeWork × FNL" entries</div>
+      </div>
+    </div>
+
+    <!-- PAID OPTION -->
+    <div class="tier-card paid">
+      <div class="tier-header">
+        <div class="tier-recommended">Recommended</div>
+        <div class="tier-tag">Option B · Paid Sponsorship</div>
+        <div class="tier-price">£5,000</div>
+        <div class="tier-subtitle">Full package — maximum brand visibility</div>
+      </div>
+      <div class="tier-body">
+        <div class="tier-section-label">Everything in VIK, Plus</div>
+        <div class="tier-item">Branded activation space at Run The Wharf festival village</div>
+        <div class="tier-item">WeWork member discount on FNL race entries</div>
+        <hr class="tier-divider">
+        <div class="tier-section-label">Upgraded Exposure</div>
+        <div class="tier-bonus">WeWork branding on event signage at Run The Wharf</div>
+        <div class="tier-bonus">WeWork logo on FNL digital assets, email campaigns, and event comms</div>
+        <div class="tier-bonus">PA mentions and brand call-outs during race night</div>
+        <div class="tier-bonus">Post-event highlight content featuring WeWork partnership</div>
+        <hr class="tier-divider">
+        <div class="tier-section-label">Bonus</div>
+        <div class="tier-bonus">100x free Run The Wharf race entries for WeWork members</div>
+        <div class="tier-bonus">2x co-branded social media posts across FNL's 120K+ following (double the VIK allocation)</div>
+      </div>
     </div>
   </div>
 </section>
@@ -521,6 +631,7 @@
         <li>Co-branded social content across FNL's 120K+ following</li>
         <li>Position WeWork as a lifestyle brand, not just workspace</li>
         <li>Exclusive "WeWork × FNL" member offers — drive engagement</li>
+        <li>Paid tier: 100 free race entries + full event branding + 2x social</li>
       </ul>
     </div>
     <div class="value-card cyan-accent">
@@ -545,10 +656,10 @@
   <div class="deal-grid">
     <div class="deal-item"><div class="deal-label">Partner</div><div class="deal-value">WeWork</div></div>
     <div class="deal-item"><div class="deal-label">Event</div><div class="deal-value">Run The Wharf 5K — September 3, 2026</div></div>
-    <div class="deal-item"><div class="deal-label">Structure</div><div class="deal-value">Value in Kind (VIK) — Zero Cash</div></div>
-    <div class="deal-item featured"><div class="deal-label">Exchange</div><div class="deal-value">Network Access + Promotion &#8596; Brand Exposure + Activation</div></div>
+    <div class="deal-item"><div class="deal-label">Option A — VIK</div><div class="deal-value">£0 — Network access for activation space, social, member offers</div></div>
+    <div class="deal-item featured"><div class="deal-label">Option B — Paid</div><div class="deal-value">£5,000 — Full branding, signage, PA, 100x free entries, 2x social</div></div>
     <div class="deal-item"><div class="deal-label">WeWork Delivers</div><div class="deal-value">London-wide promotional access, member comms, event space, digital screens</div></div>
-    <div class="deal-item"><div class="deal-label">FNL Delivers</div><div class="deal-value">Activation space at RTW, social content, member offers</div></div>
+    <div class="deal-item"><div class="deal-label">FNL Delivers</div><div class="deal-value">Activation + social (VIK) or full branding package + 100 entries (Paid)</div></div>
   </div>
 </section>
 
@@ -558,11 +669,11 @@
     <h2>Let's Make It <span class="highlight">Happen.</span></h2>
   </div>
   <ol class="steps">
-    <li>Introductory call to align on partnership vision and agree VIK scope</li>
-    <li>Confirm priority WeWork locations for FNL promotional distribution</li>
-    <li>Agree member communication plan (newsletters, app, digital screens)</li>
-    <li>Finalise FNL event branding and activation package for WeWork</li>
-    <li>Sign VIK partnership agreement</li>
+    <li>Introductory call to align on partnership vision and discuss both options</li>
+    <li>Confirm preferred partnership tier — VIK or Paid Sponsorship</li>
+    <li>Agree priority WeWork locations for FNL promotional distribution</li>
+    <li>Finalise member communication plan and FNL activation package</li>
+    <li>Sign partnership agreement</li>
     <li>Launch co-branded campaign — "WeWork × Friday Night Lights"</li>
   </ol>
 </section>
